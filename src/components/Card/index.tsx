@@ -25,7 +25,7 @@ const Card = ({
       }`}
       style={{
         backgroundImage: backgroundImageURL
-          ? `url(${backgroundImageURL})`
+          ? `url(${backgroundImageURL}) `
           : undefined,
       }}
     >
@@ -36,11 +36,13 @@ const Card = ({
             : styles.CardTitleImageContainerNoBg
         }
       >
-        <img
-          src={titleImage}
-          className={styles.CardTitleImage}
-          alt="titleImage"
-        />
+        {titleImage && (
+          <img
+            src={titleImage}
+            className={styles.CardTitleImage}
+            alt="titleImage"
+          />
+        )}
       </div>
       <div className={styles.CardTitle}>{title}</div>
       <div className={styles.CardDescription}>{desciption}</div>
