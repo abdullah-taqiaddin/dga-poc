@@ -31,7 +31,9 @@ const Header = () => {
   return (
     <header className={styles.MainHeader}>
       <div className={styles.HeaderLeft}>
-        <img src={logo} className={styles.MainLogo} alt="logo" />
+        <a href="/">
+          <img src={logo} className={styles.MainLogo} alt="logo" />
+        </a>
         <div className={styles.HeaderNav}>
           <div className={styles.HeaderIcons}>
             <div className={styles.ContactLinkContainer}>
@@ -62,7 +64,7 @@ const Header = () => {
             <div className={styles.ContactLinkContainer}>
               <a
                 className={`${styles.Mainlink} ${styles.ContactLink}`}
-                href="#programs"
+                href="/services"
               >
                 E-Services
                 <svg
