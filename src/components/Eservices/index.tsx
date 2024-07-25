@@ -20,9 +20,19 @@ import certIcon from "../../assets/icons/certified-icn.svg";
 import checkedIcon from "../../assets/icons/checked-icn.svg";
 import heartIcon from "../../assets/icons/heart-icn.svg";
 
-const CustomTab = ({ props = {} }: any) => {
-  console.log(props);
-  const { icon, children, isSelected, ...rest } = props;
+interface CustomTabProps {
+  icon: React.ElementType;
+  children: React.ReactNode;
+  isSelected?: boolean;
+  [key: string]: any; // Allow any other props
+}
+
+const CustomTab: React.FC<CustomTabProps> = ({
+  icon,
+  children,
+  isSelected,
+  ...rest
+}) => {
   const tabStyles = useStyleConfig("CustomTab", { isSelected });
 
   return (
@@ -53,7 +63,7 @@ const CustomTab = ({ props = {} }: any) => {
   );
 };
 
-const Eservice = () => {
+const Eservice: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>E-Services</div>

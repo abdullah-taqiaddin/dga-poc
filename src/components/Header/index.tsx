@@ -1,56 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 import logo from "../../assets/mh-logo-white.png";
+import logoblack from "../../assets/Saudi_Ministry_of_Municipal_and_Rural_Affairs_and_Housing_Logo.svg (1) 1.svg";
 import styles from "./style.module.css";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-icn.svg";
 import { ReactComponent as SettingIcon } from "../../assets/icons/settings.icn.svg";
 import { ReactComponent as AccessabilityIcon } from "../../assets/icons/accessability-icn.svg";
+import { ReactComponent as DropdownIcon } from "../../assets/icons/dropdown-icn.svg";
+import programsIcon from "../../assets/icons/programs-icn.svg";
+import contactIcon from "../../assets/icons/contact-us-icn.svg";
+import eservicesIcon from "../../assets/icons/eservices-icn.svg";
+import knowledgeIcon from "../../assets/icons/knowledge-icn.svg";
+import lawsIcon from "../../assets/icons/laws-icn.svg";
+import mediaIcon from "../../assets/icons/media-icn.svg";
+import projectsIcon from "../../assets/icons/projects-icn.svg";
 
 const Header = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-
-  useEffect(() => {
-    if (drawerOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [drawerOpen]);
-
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <header className={styles.MainHeader}>
-      <div
-        style={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "row",
-          gap: "1rem",
-          alignItems: "center",
-          paddingLeft: "2rem",
-        }}
-      >
-        <img
-          src={logo}
-          className={styles.MainLogo}
-          alt="logo"
-          style={{ maxWidth: "80px", maxHeight: "30px" }}
-        />
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            height: "100%",
-            gap: "0.5rem",
-          }}
-        >
-          {/* Header icons and links */}
+      <div className={styles.HeaderLeft}>
+        <img src={logo} className={styles.MainLogo} alt="logo" />
+        <div className={styles.HeaderNav}>
           <div className={styles.HeaderIcons}>
             <div className={styles.ContactLinkContainer}>
               <a
@@ -126,7 +108,7 @@ const Header = () => {
                 </svg>
               </a>
               <div className={styles.ContactLinkHighlight}></div>
-            </div>{" "}
+            </div>
             <div className={styles.ContactLinkContainer}>
               <a
                 className={`${styles.Mainlink} ${styles.ContactLink}`}
@@ -202,11 +184,11 @@ const Header = () => {
               </a>
               <div className={styles.ContactLinkHighlight}></div>
             </div>
+
+            {/* Repeat the above block for other links */}
           </div>
-          {/* Repeat the above block for other links */}
         </div>
       </div>
-
       <div className={styles.HeaderIcons}>
         <div className={styles.ContactLinkContainer}>
           <a
@@ -237,7 +219,11 @@ const Header = () => {
         <SettingIcon className={styles.Icon} />
         <AccessabilityIcon className={styles.Icon} />
       </div>
-      <button className={styles.DrawerButton} onClick={toggleDrawer}>
+      <Button
+        className={styles.DrawerButton}
+        onClick={onOpen}
+        style={{ background: "none" }}
+      >
         <svg
           width="18"
           height="16"
@@ -262,73 +248,74 @@ const Header = () => {
             </g>
           </g>
         </svg>
-      </button>
-      {drawerOpen && (
-        <div className={styles.Drawer}>
-          <div className={styles.DrawerHeader}>
-            <img
-              src={logo}
-              className={styles.MainLogo}
-              alt="logo"
-              style={{ maxWidth: "80px", maxHeight: "30px" }}
-            />
-            <button className={styles.CloseButton} onClick={toggleDrawer}>
-              X
-            </button>
-          </div>
-          <div className={styles.DrawerContent}>
-            {/* Drawer content (nav items) goes here */}
-            <div className={styles.ContactLinkContainer}>
-              <a
-                className={`${styles.Mainlink} ${styles.ContactLink}`}
-                href="#programs"
-              >
-                Programs
-              </a>
+      </Button>
+      <Drawer isOpen={isOpen} placement="top" onClose={onClose} size="full">
+        <DrawerOverlay />
+        <DrawerContent
+          className={styles.DrawerContent}
+          style={{ padding: "0" }}
+        >
+          <DrawerHeader className={styles.DrawerHeader}>
+            <DrawerCloseButton />{" "}
+            <img src={logoblack} className={styles.MainLogo} alt="logo" />
+          </DrawerHeader>
+          <DrawerBody style={{ padding: "2rem" }}>
+            <div className={styles.DrawerBodyContent}>
+              <div className={styles.DrawerLink}>
+                <div className={styles.LinkText}>
+                  <img src={programsIcon} />
+                  Programs
+                </div>
+                <DropdownIcon className={styles.dropdownIcon} />
+              </div>
+              <div className={styles.DrawerLink}>
+                <div className={styles.LinkText}>
+                  <img src={eservicesIcon} />
+                  E-Services
+                </div>
+                <DropdownIcon className={styles.dropdownIcon} />
+              </div>
+              <div className={styles.DrawerLink}>
+                <div className={styles.LinkText}>
+                  <img src={projectsIcon} />
+                  Projects
+                </div>
+                <DropdownIcon className={styles.dropdownIcon} />
+              </div>
+              <div className={styles.DrawerLink}>
+                <div className={styles.LinkText}>
+                  <img src={lawsIcon} />
+                  Laws
+                </div>
+                <DropdownIcon className={styles.dropdownIcon} />
+              </div>
+              <div className={styles.DrawerLink}>
+                <div className={styles.LinkText}>
+                  <img src={knowledgeIcon} />
+                  Knowledge
+                </div>
+                <DropdownIcon className={styles.dropdownIcon} />
+              </div>
+              <div className={styles.DrawerLink}>
+                <div className={styles.LinkText}>
+                  <img src={mediaIcon} />
+                  Media
+                </div>
+                <DropdownIcon className={styles.dropdownIcon} />
+              </div>
             </div>
-            <div className={styles.ContactLinkContainer}>
-              <a
-                className={`${styles.Mainlink} ${styles.ContactLink}`}
-                href="#services"
-              >
-                E-Services
-              </a>
+          </DrawerBody>
+          <DrawerFooter style={{ width: "100%", justifyContent: "flex-start" }}>
+            <div className={styles.DrawerLink} style={{ width: "100%" }}>
+              <div className={styles.LinkText}>
+                <img src={contactIcon} />
+                Contact
+              </div>
+              <DropdownIcon className={styles.dropdownIcon} />
             </div>
-            <div className={styles.ContactLinkContainer}>
-              <a
-                className={`${styles.Mainlink} ${styles.ContactLink}`}
-                href="#projects"
-              >
-                Projects
-              </a>
-            </div>
-            <div className={styles.ContactLinkContainer}>
-              <a
-                className={`${styles.Mainlink} ${styles.ContactLink}`}
-                href="#laws"
-              >
-                Laws
-              </a>
-            </div>
-            <div className={styles.ContactLinkContainer}>
-              <a
-                className={`${styles.Mainlink} ${styles.ContactLink}`}
-                href="#knowledge"
-              >
-                Knowledge
-              </a>
-            </div>
-            <div className={styles.ContactLinkContainer}>
-              <a
-                className={`${styles.Mainlink} ${styles.ContactLink}`}
-                href="#media"
-              >
-                Media
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </header>
   );
 };

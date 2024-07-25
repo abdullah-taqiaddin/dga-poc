@@ -16,9 +16,9 @@ import image8 from "./assets/MinistryProgramImages/image 8.svg";
 import image9 from "./assets/MinistryProgramImages/image 9.svg";
 import image10 from "./assets/MinistryProgramImages/image 10.svg";
 import ejar from "./assets/MinistryProgramImages/ejar.svg";
-import ejarbg from "./assets/MinistryProgramImages/ejarbg.png";
+import ejarbg from "./assets/ejar_card.png";
 import mobileAppsImage from "./assets/MinistryProgramImages/IphoneApps 1.png";
-import visionbg from "./assets/MinistryProgramImages/2030vision.png";
+import visionbg from "./assets/sa_vision_card.png";
 import ServicePage from "./pages/ServicePage/servicePage";
 import { Button } from "@chakra-ui/react";
 
